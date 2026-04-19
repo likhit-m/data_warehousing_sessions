@@ -1,0 +1,8 @@
+sources:
+  - name: climate_trace_steel
+    database: climate_trace_steel
+    schema: raw
+    tables:
+      - name: emissions_sources
+      - name: sources_ownership 
+      - name: sources_confidence
