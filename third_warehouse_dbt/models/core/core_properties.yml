@@ -1,0 +1,10 @@
+version: 2
+
+models:
+  - name: fct_steel_emissions_attribution
+    columns:
+      - name: weighted_emissions_co2e
+        data_tests:
+          - not_null:
+                config:
+                    severity: warn
