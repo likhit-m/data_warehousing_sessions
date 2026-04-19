@@ -1,4 +1,4 @@
-WITH emissions_data_20yr AS (
+WITH emissions_data_three_years AS (
 SELECT 
     source_id,
     source_name,
@@ -13,6 +13,5 @@ FROM
     {{ source('climate_trace_steel', 'emissions_sources') }})
 
 SELECT *
-FROM emissions_data_20yr
+FROM emissions_data_three_years
 WHERE extract(year from start_date) >= 2023 and extract(year from end_date) < 2026
-ORDER BY end_date DESC
