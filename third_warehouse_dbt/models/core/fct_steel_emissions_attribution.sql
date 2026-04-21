@@ -1,4 +1,4 @@
-{{ config(schema = 'core')}}
+{{ config(schema = 'core', materialized= 'table')}}
 
 with source_ownership_join AS (
 SELECT 

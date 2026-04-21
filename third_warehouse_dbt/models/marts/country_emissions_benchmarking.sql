@@ -26,4 +26,3 @@ select
     (c.total_weighted_emissions - g.global_avg_country_emissions) as variance_from_global_avg
 from country_stats c
 join global_averages g on c.emission_year = g.emission_year
-order by c.emission_year desc, c.total_weighted_emissions desc

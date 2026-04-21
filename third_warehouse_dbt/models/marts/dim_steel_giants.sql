@@ -24,4 +24,3 @@ ranking as (
 )
 
 select * from ranking
-ORDER BY parent_type ASC, category_rank ASC

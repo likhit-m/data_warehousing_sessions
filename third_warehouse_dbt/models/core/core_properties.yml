@@ -5,7 +5,7 @@ models:
     description: >
       Fact table attributing CO2e emissions to parent companies based on 
       ownership share. Uses COALESCE to default to 100% ownership where 
-      share data is unavailable, following GHG Protocol Scope 1 attribution rules.
+      share data is unavailable
       Grain: one row per source facility per parent company ownership record.
     columns:
       - name: source_id
