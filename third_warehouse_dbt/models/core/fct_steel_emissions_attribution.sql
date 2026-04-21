@@ -15,7 +15,7 @@ SELECT
     COALESCE(o.ownership_percent, 100) AS effective_ownership_percentage
 FROM
     {{ ref("stg_emissions_sources")}} e
-JOIN
+LEFT JOIN
     {{ ref('stg_emissions_ownership') }} o
 ON e.source_id = o.source_id)
 

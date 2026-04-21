@@ -1,12 +1,12 @@
-{{ config(schema='marts') }}
-{{ config(materialized='table') }}
+{{ config(schema='marts', materialized='table') }}
 
 with aggregations AS (
 select 
     parent_name, 
     parent_type, 
-    sum(weighted_emissions_co2e) as total_co2e_impact_tonnes,
+    sum(weighted_emissions_co2e) as total_co2e_impact_tonnes
 from {{ ref('fct_steel_emissions_attribution') }}
+WHERE parent_name IS NOT NULL
 group by 1, 2),
 
 ranking as (

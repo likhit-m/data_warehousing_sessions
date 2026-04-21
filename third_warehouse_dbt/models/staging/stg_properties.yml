@@ -1,0 +1,46 @@
+version: 2
+
+models:
+  - name: stg_emissions_sources
+    description: "Staged emissions data from Climate Trace steel sector. Filters to 2023-2025 window and standardises column names."
+    columns:
+      - name: source_id
+        description: "Unique identifier for each steel emission source facility."
+        data_tests:
+          - not_null
+          - unique:
+              config:
+                severity: warn
+      - name: country_code
+        description: "ISO3 country code where the facility is located."
+        data_tests:
+          - not_null
+      - name: emissions_quantity
+        description: "Raw reported emissions quantity in units defined by emissions_unit column."
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+  - name: stg_emissions_ownership
+    description: "Staged ownership data linking emission sources to parent companies with ownership percentage."
+    columns:
+      - name: source_id
+        description: "Foreign key to stg_emissions_sources. Links ownership record to emission facility."
+        data_tests:
+          - not_null
+          - unique:
+              config:
+                severity: warn
+          - relationships:
+              to: ref('stg_emissions_sources')
+              field: source_id
+      - name: parent_id
+        description: "Unique identifier for the parent company owning this facility."
+        data_tests:
+          - not_null
+      - name: ownership_percent
+        description: "Percentage ownership held by parent company. Null values indicate 100% ownership."
+        data_tests:
+          - not_null:
+              config:
+                severity: warn

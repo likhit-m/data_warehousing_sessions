@@ -1,0 +1,39 @@
+version: 2
+
+models:
+  - name: dim_steel_giants
+    description: >
+      Dimension table ranking steel companies by total attributed CO2e emissions.
+      Provides both category rank (within company type) and global rank (across all companies).
+      Grain: one row per parent company.
+    columns:
+      - name: parent_name
+        description: "Name of the parent company owning steel facilities."
+        data_tests:
+          - not_null
+          - unique
+      - name: total_co2e_impact_tonnes
+        description: "Total CO2e emissions attributed to this company across all owned facilities."
+        data_tests:
+          - not_null
+      - name: category_rank
+        description: "Rank within parent_type category by total emissions (1 = highest emitter in category)."
+      - name: global_rank
+        description: "Global rank across all companies by total emissions (1 = highest emitter globally)."
+
+  - name: country_emissions_benchmarking
+    description: >
+      Country-level emissions benchmarking mart comparing each country's steel emissions
+      against global averages by year. Supports identification of high-impact regions.
+      Grain: one row per country per emission year.
+    columns:
+      - name: country_code
+        description: "ISO3 country code."
+        data_tests:
+          - not_null
+      - name: emission_year
+        description: "Calendar year derived from start_date of emission records."
+      - name: total_weighted_emissions
+        description: "Sum of ownership-attributed CO2e emissions for this country and year."
+      - name: variance_from_global_avg
+        description: "Difference between country total and global average country emissions. Positive = above average."

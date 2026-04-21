@@ -4,5 +4,4 @@ sources:
     schema: raw
     tables:
       - name: emissions_sources
-      - name: sources_ownership 
-      - name: sources_confidence
+      - name: sources_ownership

@@ -2,9 +2,26 @@ version: 2
 
 models:
   - name: fct_steel_emissions_attribution
+    description: >
+      Fact table attributing CO2e emissions to parent companies based on 
+      ownership share. Uses COALESCE to default to 100% ownership where 
+      share data is unavailable, following GHG Protocol Scope 1 attribution rules.
+      Grain: one row per source facility per parent company ownership record.
     columns:
+      - name: source_id
+        description: "Unique identifier for the emission source facility."
+        data_tests:
+          - not_null
       - name: weighted_emissions_co2e
+        description: >
+          Facility emissions adjusted by ownership percentage. 
+          Formula: emissions_quantity * (ownership_percent / 100).
+          Defaults to full emissions where ownership data is unavailable.
         data_tests:
           - not_null:
-                config:
-                    severity: warn
+              config:
+                severity: warn
+      - name: effective_ownership_percentage
+        description: "Ownership percentage used for attribution. Defaults to 100 where ownership data is null."
+        data_tests:
+          - not_null
