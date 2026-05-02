@@ -1,0 +1,74 @@
+version: 2
+
+models:
+  - name: stg_solid_waste
+    description: "Solid waste emissions data from Climate Trace waste sector. Filters to 2025 and specific countries and standardises column names."
+    columns:
+      - name: source_id
+        description: "Unique identifier for each solid waste emission source facility."
+        data_tests:
+          - not_null
+          - unique:
+              config:
+                severity: warn
+      - name: emissions_quantity
+        description: "Raw reported emissions quantity"
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: primary_key
+        description: "Surrogate key generated using dbt_utils"
+        data_tests:
+          - not_null
+          - unique:
+              config:
+                severity: warn
+
+  - name: stg_domestic_wastewater
+    description: "Domestic wastewater emissions data from Climate Trace waste sector. Filters to 2025 and specific countries and standardises column names."
+    columns:
+      - name: source_id
+        description: "Unique identifier for each domestic wastewater emission source facility."
+        data_tests:
+          - not_null
+          - unique:
+              config:
+                severity: warn
+      - name: emissions_quantity
+        description: "Raw reported emissions quantity"
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: primary_key
+        description: "Surrogate key generated using dbt_utils"
+        data_tests:
+          - not_null
+          - unique:
+              config:
+                severity: warn
+
+  - name: stg_industrial_wastewater
+    description: "Industrial wastewater emissions data from Climate Trace waste sector. Filters to 2025 and specific countries and standardises column names."
+    columns:
+      - name: source_id
+        description: "Unique identifier for each industrial wastewater emission source facility."
+        data_tests:
+          - not_null
+          - unique:
+              config:
+                severity: warn
+      - name: emissions_quantity
+        description: "Raw reported emissions quantity"
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+      - name: primary_key
+        description: "Surrogate key generated using dbt_utils"
+        data_tests:
+          - not_null
+          - unique:
+              config:
+                severity: warn

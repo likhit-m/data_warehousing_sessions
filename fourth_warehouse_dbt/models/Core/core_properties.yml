@@ -1,0 +1,20 @@
+version: 2
+
+models:
+  - name: dim_waste_sites
+    description: "List of sources in each country who reported in 2025"
+    columns:
+      - name: source_id
+        description: "Unique identifier for each source facility."
+        data_tests:
+          - not_null
+          - unique:
+              config:
+                severity: error
+      - name: waste_asset_key
+        description: "Surrogate key generated using dbt_utils in staging area"
+        data_tests:
+          - not_null
+          - unique:
+              config:
+                severity: error

@@ -1,0 +1,8 @@
+sources:
+  - name: waste_emissions
+    database: '{{ target.catalog }}'
+    schema: raw
+    tables:
+      - name: domestic_wastewater_emissions
+      - name: industrial_wastewater_emissions
+      - name: solid_waste_emissions
