@@ -2,4 +2,5 @@
 logs/
 .vscode/
 requirements.txt/
-Refractoring_dbt/
+refactoring_dbt
+end_to_end_dbt_project/
